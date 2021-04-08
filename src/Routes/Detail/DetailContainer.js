@@ -32,7 +32,7 @@ export default class extends React.Component {
             } else {
                 // const request = await tvApi.showDetail(parsedId);
                 // result = request.data;
-                ({ data: result } = await tvApi.movieDetail(parsedId));
+                ({ data: result } = await tvApi.showDetail(parsedId));
             }
 
         } catch {
@@ -45,7 +45,7 @@ export default class extends React.Component {
     }
 
     render() {
-
+        console.log(this.props);
         const { result, loading, error } = this.state;
         console.log(result);
         return <DetailPresenter

@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/beomflix/static/js/main.31862388.chunk.js",
+    "main.js.map": "/beomflix/static/js/main.31862388.chunk.js.map",
+    "runtime-main.js": "/beomflix/static/js/runtime-main.11c020a5.js",
+    "runtime-main.js.map": "/beomflix/static/js/runtime-main.11c020a5.js.map",
+    "static/js/2.961bf095.chunk.js": "/beomflix/static/js/2.961bf095.chunk.js",
+    "static/js/2.961bf095.chunk.js.map": "/beomflix/static/js/2.961bf095.chunk.js.map",
+    "index.html": "/beomflix/index.html",
+    "static/js/2.961bf095.chunk.js.LICENSE.txt": "/beomflix/static/js/2.961bf095.chunk.js.LICENSE.txt",
+    "static/media/noPosterSmall.PNG": "/beomflix/static/media/noPosterSmall.91e0038f.PNG"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.11c020a5.js",
+    "static/js/2.961bf095.chunk.js",
+    "static/js/main.31862388.chunk.js"
+  ]
+}

@@ -12,6 +12,7 @@ export default class extends React.Component {
             error: null,
             cast: null,
             crew: null,
+            videos: null,
             isMovie: pathname.includes("/movie/")
         };
     }
@@ -28,6 +29,7 @@ export default class extends React.Component {
         let result = null;
         let cast = null;
         let crew = null;
+        let results = null;
         try {
             if (isMovie) {
                 // const request = await MovieApi.movieDetail(parsedId);
@@ -35,33 +37,36 @@ export default class extends React.Component {
                 ({ data: result } = await MovieApi.movieDetail(parsedId));
                 ({ data: { cast } } = await MovieApi.credit(parsedId));
                 ({ data: { crew } } = await MovieApi.credit(parsedId));
+                ({ data: { results } } = await MovieApi.video(parsedId));
             } else {
                 // const request = await tvApi.showDetail(parsedId);
                 // result = request.data;
                 ({ data: result } = await tvApi.showDetail(parsedId));
                 ({ data: { cast } } = await tvApi.credit(parsedId));
                 ({ data: { crew } } = await tvApi.credit(parsedId));
+                ({ data: { results } } = await tvApi.video(parsedId));
             }
 
         } catch {
             this.setState({ error: "Can't find anything." })
         } finally {
             this.setState({
-                loading: false, result, cast, crew
+                loading: false, result, cast, crew, videos: results
             })
         }
     }
 
     render() {
         // console.log(this.props);
-        const { result, loading, error, cast, crew } = this.state;
+        const { result, loading, error, cast, crew, videos } = this.state;
         // console.log(result);
-        console.log(cast);
+        console.log(videos);
         return <DetailPresenter
             result={result}
             loading={loading}
             error={error}
             cast={cast}
-            crew={crew} />
+            crew={crew}
+            videos={videos} />
     }
 }

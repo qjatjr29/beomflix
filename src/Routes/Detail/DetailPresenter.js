@@ -80,7 +80,6 @@ const Cast = styled.div`
 const Crew = styled.div`
     margin-top:30px;
 `;
-const CreditItem = styled.div``;
 const ProfileContanier = styled.div`
      display: flex;
     flex-direction: column;
@@ -107,11 +106,13 @@ const ProfileImg = styled.div`
     border-radius:10px;
     margin-bottom:10px;
     `;
-const CreditTitle = styled.span`
+const SectionTitle = styled.span`
     font-size:23px;
     font-weight:600;
 `;
-const CreditHr = styled.hr``;
+const SectionHr = styled.hr`
+    margin-top:15px;
+`;
 const PeopleName = styled.div`
     font-size:14px;
     margin-bottom:5px;
@@ -130,8 +131,19 @@ const Job = styled.div`
     opacity:0.5;
 `;
 
+const VideoContainer = styled.div``;
+const Videos = styled.div`
+  height: 300px;
+    display: grid;
+    gap: 10px;
+    align-items: center;
+    grid-auto-flow: column;
+    grid-auto-columns: 30%;
+    overflow-x: auto;`;
+const VideoIframe = styled.iframe``;
 
-const DetailPresenter = ({ result, loading, error, cast, crew }) =>
+
+const DetailPresenter = ({ result, loading, error, cast, crew, videos }) =>
     loading ? (
         <>
             <Helmet><title>Loading | Beomflix</title></Helmet>
@@ -179,8 +191,8 @@ const DetailPresenter = ({ result, loading, error, cast, crew }) =>
                         <Overview>{result.overview}</Overview>
                         <Credit>
                             <Cast>
-                                <CreditTitle>Actor</CreditTitle>
-                                <CreditHr></CreditHr>
+                                <SectionTitle>Actor</SectionTitle>
+                                <SectionHr></SectionHr>
 
                                 <Profile >
                                     {cast.map((casting, index) =>
@@ -194,8 +206,8 @@ const DetailPresenter = ({ result, loading, error, cast, crew }) =>
                                 </Profile>
                             </Cast>
                             <Crew>
-                                <CreditTitle>Staff</CreditTitle>
-                                <CreditHr></CreditHr>
+                                <SectionTitle>Staff</SectionTitle>
+                                <SectionHr></SectionHr>
 
                                 <Profile >
                                     {crew.map((casting, index) =>
@@ -209,6 +221,18 @@ const DetailPresenter = ({ result, loading, error, cast, crew }) =>
                                 </Profile>
                             </Crew>
                         </Credit>
+                        <VideoContainer>
+                            <SectionTitle>Videos</SectionTitle>
+                            <SectionHr></SectionHr>
+                            <Videos>
+                                {videos.map((video, index) =>
+                                    index === video.length - 1 ? null :
+                                        <VideoIframe src={`https://www.youtube.com/embed/${video.key}`} title={video.name} width="320px" height="270px">
+
+                                        </VideoIframe>
+                                )}
+                            </Videos>
+                        </VideoContainer>
                     </Data>
                 </Content>
             </Container>

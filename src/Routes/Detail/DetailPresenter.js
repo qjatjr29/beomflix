@@ -9,7 +9,7 @@ import Message from "Components/Message";
 const Container = styled.div`
     height:calc(100vh - 50px);
     width:100%;
-    position:relative;
+    
     padding:50px;
 `;
 const Content = styled.div`
@@ -23,14 +23,19 @@ const Content = styled.div`
 
 
 const Cover = styled.div`
-    width:30%;
+    width:400px;
     background-image:url(${props => props.bgImage});
     background-position:center center;
     background-size:cover;
-    height:100%;
+    height:600px;
+    display:block;
+    position:fixed;
+    top:70px;
+    left:30px;
+    
 `;
 const Backdrop = styled.div`
-    position:absolute;
+    position:fixed;
     top:0;
     left:0;
     width:100%;
@@ -40,12 +45,12 @@ const Backdrop = styled.div`
     background-size:cover;
     filter:blur(3px);
     opacity:0.5;
-    z-index:0;
+    z-index:-2;
 `;
 
 const Data = styled.div`
     width :70%;
-    margin-left: 20px;
+    margin-left: 400px;
 `;
 
 const Title = styled.h3`
@@ -99,7 +104,7 @@ const Profile = styled.div`
 `;
 const ProfileImg = styled.div`
     width:120px;
-    background-image:url(${props => props.bgImage});
+    background-image:url(${props => props.peopleImage});
     background-position:center center;
     background-size:cover;
     height:140px;
@@ -157,7 +162,7 @@ const DetailPresenter = ({ result, loading, error, cast, crew, videos }) =>
                     bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
                 />
                 <Content>
-                    <Cover bgImage={result.poster_path ? `https://image.tmdb.org/t/p/original${result.poster_path}` : require("../../assets/noPosterSmall.PNG")} />
+                    <Cover bgImage={result.poster_path ? `https://image.tmdb.org/t/p/original${result.poster_path}` : require("../../assets/noPosterSmall.PNG").default} />
                     <Data>
                         <Title>{result.original_title ? result.original_title : result.original_name}</Title>
                         <ItemContainer>
@@ -198,7 +203,7 @@ const DetailPresenter = ({ result, loading, error, cast, crew, videos }) =>
                                     {cast.map((casting, index) =>
                                         index === casting.length - 1 ? null :
                                             <ProfileContanier>
-                                                <ProfileImg bgImage={casting.profile_path ? `https://image.tmdb.org/t/p/w200${casting.profile_path}` : require("../../assets/noPosterSmall.PNG")} />
+                                                <ProfileImg peopleImage={casting.profile_path ? `https://image.tmdb.org/t/p/w200${casting.profile_path}` : require("../../assets/noPosterSmall.PNG").default} />
                                                 <PeopleName>{casting.name}</PeopleName>
                                                 <CharacterName>{casting.character}</CharacterName>
                                             </ProfileContanier>
@@ -213,7 +218,7 @@ const DetailPresenter = ({ result, loading, error, cast, crew, videos }) =>
                                     {crew.map((casting, index) =>
                                         index === casting.length - 1 ? null :
                                             <ProfileContanier>
-                                                <ProfileImg bgImage={casting.profile_path ? `https://image.tmdb.org/t/p/w200${casting.profile_path}` : require("../../assets/noPosterSmall.PNG")} />
+                                                <ProfileImg peopleImage={casting.profile_path ? `https://image.tmdb.org/t/p/w200${casting.profile_path}` : require("../../assets/noPosterSmall.PNG").default} />
                                                 <PeopleName>{casting.name}</PeopleName>
                                                 <Job>{casting.job}</Job>
                                             </ProfileContanier>

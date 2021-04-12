@@ -140,7 +140,7 @@ const VideoContainer = styled.div``;
 const Videos = styled.div`
   height: 300px;
     display: grid;
-    gap: 10px;
+    gap: 20px;
     align-items: center;
     grid-auto-flow: column;
     grid-auto-columns: 30%;
@@ -148,7 +148,30 @@ const Videos = styled.div`
 const VideoIframe = styled.iframe``;
 
 
-const DetailPresenter = ({ result, loading, error, cast, crew, videos }) =>
+const CompanyContainer = styled.div`
+    
+    width:370px;
+    display:grid;
+    position:fixed;
+    grid-template-columns: repeat(4, 1fr);
+    top:700px;
+    left:40px;
+    justify-content:space-between;
+    align-items: center;
+    background-color:rgba(255,255,255,0.7);
+    padding:10px;
+`;
+const CompanyLogo = styled.img`
+    width:80%;
+`;
+const CompanyName = styled.span`
+    color:black;
+    font-size:12px;
+   
+`;
+
+const DetailPresenter = ({ result, loading, error, cast, crew, videos, companies }) =>
+
     loading ? (
         <>
             <Helmet><title>Loading | Beomflix</title></Helmet>
@@ -163,6 +186,21 @@ const DetailPresenter = ({ result, loading, error, cast, crew, videos }) =>
                 />
                 <Content>
                     <Cover bgImage={result.poster_path ? `https://image.tmdb.org/t/p/original${result.poster_path}` : require("../../assets/noPosterSmall.PNG").default} />
+                    <CompanyContainer>
+                        {result && result.production_companies.map((company) => {
+                            if (company.logo_path) {
+                                return (
+                                    <>
+                                        <CompanyLogo src={`https://image.tmdb.org/t/p/w200${company.logo_path}`} />
+                                        <CompanyName>{company.name}</CompanyName>
+                                    </>
+                                )
+                            }
+                            else {
+                                return <CompanyName>{company.name}</CompanyName>
+                            }
+                        })}
+                    </CompanyContainer>
                     <Data>
                         <Title>{result.original_title ? result.original_title : result.original_name}</Title>
                         <ItemContainer>
@@ -232,7 +270,7 @@ const DetailPresenter = ({ result, loading, error, cast, crew, videos }) =>
                             <Videos>
                                 {videos.map((video, index) =>
                                     index === video.length - 1 ? null :
-                                        <VideoIframe src={`https://www.youtube.com/embed/${video.key}`} title={video.name} width="320px" height="270px">
+                                        <VideoIframe src={`https://www.youtube.com/embed/${video.key}`} title={video.name} width="380px" height="280px">
 
                                         </VideoIframe>
                                 )}

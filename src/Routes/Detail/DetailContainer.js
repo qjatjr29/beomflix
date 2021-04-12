@@ -13,6 +13,7 @@ export default class extends React.Component {
             cast: null,
             crew: null,
             videos: null,
+
             isMovie: pathname.includes("/movie/")
         };
     }
@@ -30,6 +31,7 @@ export default class extends React.Component {
         let cast = null;
         let crew = null;
         let results = null;
+
         try {
             if (isMovie) {
                 // const request = await MovieApi.movieDetail(parsedId);
@@ -38,6 +40,8 @@ export default class extends React.Component {
                 ({ data: { cast } } = await MovieApi.credit(parsedId));
                 ({ data: { crew } } = await MovieApi.credit(parsedId));
                 ({ data: { results } } = await MovieApi.video(parsedId));
+
+
             } else {
                 // const request = await tvApi.showDetail(parsedId);
                 // result = request.data;
@@ -45,6 +49,10 @@ export default class extends React.Component {
                 ({ data: { cast } } = await tvApi.credit(parsedId));
                 ({ data: { crew } } = await tvApi.credit(parsedId));
                 ({ data: { results } } = await tvApi.video(parsedId));
+
+
+
+
             }
 
         } catch {
@@ -60,13 +68,14 @@ export default class extends React.Component {
         // console.log(this.props);
         const { result, loading, error, cast, crew, videos } = this.state;
         // console.log(result);
-        console.log(videos);
+        // console.log(companies.logo_path);
         return <DetailPresenter
             result={result}
             loading={loading}
             error={error}
             cast={cast}
             crew={crew}
-            videos={videos} />
+            videos={videos}
+        />
     }
 }

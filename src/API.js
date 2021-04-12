@@ -27,7 +27,8 @@ export const MovieApi = {
                 query: encodeURIComponent(term)
             }
         }
-    )
+    ),
+    credit: (id) => api.get(`movie/${id}/credits`)
 
 }
 
@@ -46,5 +47,6 @@ export const tvApi = {
                 query: encodeURIComponent(term)
             }
         }
-    )
+    ),
+    credit: (id) => api.get(`tv/${id}/credits`)
 }

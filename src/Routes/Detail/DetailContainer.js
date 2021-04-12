@@ -10,6 +10,8 @@ export default class extends React.Component {
             result: null,  // show 를 찾을 때 id를 갖고 가서 찾는다.
             loading: true,
             error: null,
+            cast: null,
+            crew: null,
             isMovie: pathname.includes("/movie/")
         };
     }
@@ -24,33 +26,42 @@ export default class extends React.Component {
             return push("/")
         }
         let result = null;
+        let cast = null;
+        let crew = null;
         try {
             if (isMovie) {
                 // const request = await MovieApi.movieDetail(parsedId);
                 // result = request.data;
                 ({ data: result } = await MovieApi.movieDetail(parsedId));
+                ({ data: { cast } } = await MovieApi.credit(parsedId));
+                ({ data: { crew } } = await MovieApi.credit(parsedId));
             } else {
                 // const request = await tvApi.showDetail(parsedId);
                 // result = request.data;
                 ({ data: result } = await tvApi.showDetail(parsedId));
+                ({ data: { cast } } = await tvApi.credit(parsedId));
+                ({ data: { crew } } = await tvApi.credit(parsedId));
             }
 
         } catch {
             this.setState({ error: "Can't find anything." })
         } finally {
             this.setState({
-                loading: false, result
+                loading: false, result, cast, crew
             })
         }
     }
 
     render() {
-        console.log(this.props);
-        const { result, loading, error } = this.state;
-        console.log(result);
+        // console.log(this.props);
+        const { result, loading, error, cast, crew } = this.state;
+        // console.log(result);
+        console.log(cast);
         return <DetailPresenter
             result={result}
             loading={loading}
-            error={error} />
+            error={error}
+            cast={cast}
+            crew={crew} />
     }
 }

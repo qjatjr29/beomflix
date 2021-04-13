@@ -29,4 +29,6 @@ Learning React and ES6 by building a Movie Discovery APP.
 - [x] On TV Show, show Season and creators
 
 
-## My API
+# Preview :
+
+Try it on [netlify][https://nifty-sammet-ddd19e.netlify.app/]

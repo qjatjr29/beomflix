@@ -32,7 +32,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://qjatjr29.github.io/beomflix",
+  "homepage": "https://nifty-sammet-ddd19e.netlify.app/",
   "browserslist": {
     "production": [
       ">0.2%",

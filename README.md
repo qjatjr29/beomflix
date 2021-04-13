@@ -26,7 +26,7 @@ Learning React and ES6 by building a Movie Discovery APP.
 - [x] Tabs inside of Movie / Show Details (YT Videos, Production Company & Countries)
 - [ ] Collections Link
 - [ ] /Collection Route
-- [ ] On TV Show, show Season and creators
+- [x] On TV Show, show Season and creators
 
 
 ## My API

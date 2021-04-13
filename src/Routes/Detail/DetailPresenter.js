@@ -112,6 +112,7 @@ const ProfileImg = styled.div`
     margin-bottom:10px;
     `;
 const SectionTitle = styled.span`
+    margin-top:20px;
     font-size:23px;
     font-weight:600;
 `;
@@ -170,7 +171,32 @@ const CompanyName = styled.span`
    
 `;
 
-const DetailPresenter = ({ result, loading, error, cast, crew, videos, companies }) =>
+const SeasonsContainer = styled.div`
+    height: 270px;
+    display: grid;
+    gap: 10px;
+    align-items: center;
+    grid-auto-flow: column;
+    grid-auto-columns: 10%;
+    overflow-x: auto;
+`;
+const Seasons = styled.div`
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+`;
+const SeasonsPoster = styled.img`
+    width:120px;
+   
+    height:140px;
+    border-radius:10px;
+    margin-bottom:15px;
+ `;
+const SeasonName = styled.div``;
+
+
+const DetailPresenter = ({ result, loading, error, cast, crew, videos, isMovie }) =>
 
     loading ? (
         <>
@@ -276,6 +302,27 @@ const DetailPresenter = ({ result, loading, error, cast, crew, videos, companies
                                 )}
                             </Videos>
                         </VideoContainer>
+
+
+
+                        {!isMovie &&
+                            <>
+                                <SectionTitle>Seasons</SectionTitle>
+                                <SectionHr></SectionHr>
+                                <SeasonsContainer>
+                                    {result && result.seasons && result.seasons.map((season) => {
+                                        return (
+                                            <Seasons>
+                                                <SeasonsPoster src={season.poster_path ? `https://image.tmdb.org/t/p/w200${season.poster_path}` : require("../../assets/noPosterSmall.PNG").default} />
+                                                <SeasonName>{season.name}</SeasonName>
+                                            </Seasons>
+                                        )
+                                    })}
+                                </SeasonsContainer>
+                            </>
+                        }
+
+
                     </Data>
                 </Content>
             </Container>

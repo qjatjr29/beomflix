@@ -13,7 +13,6 @@ export default class extends React.Component {
             cast: null,
             crew: null,
             videos: null,
-
             isMovie: pathname.includes("/movie/")
         };
     }
@@ -66,7 +65,7 @@ export default class extends React.Component {
 
     render() {
         // console.log(this.props);
-        const { result, loading, error, cast, crew, videos } = this.state;
+        const { result, loading, error, cast, crew, videos, isMovie } = this.state;
         // console.log(result);
         // console.log(companies.logo_path);
         return <DetailPresenter
@@ -76,6 +75,7 @@ export default class extends React.Component {
             cast={cast}
             crew={crew}
             videos={videos}
+            isMovie={isMovie}
         />
     }
 }

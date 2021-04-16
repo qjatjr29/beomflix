@@ -66,7 +66,7 @@ export default class extends React.Component {
     render() {
         // console.log(this.props);
         const { result, loading, error, cast, crew, videos, isMovie } = this.state;
-        // console.log(result);
+        console.log(cast);
         // console.log(companies.logo_path);
         return <DetailPresenter
             result={result}

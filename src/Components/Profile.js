@@ -16,13 +16,6 @@ const Image = styled.div`
     margin-bottom: 5px;
     transition: opacity 0.1s linear;
 `;
-
-const Rating = styled.span`
-bottom: 3px;
-right: 5px;
-position: absolute;
-opacity: 0;
-`;
 const ImageContainer = styled.div`
     margin-bottom: 5px;
     position: relative;
@@ -30,45 +23,32 @@ const ImageContainer = styled.div`
         ${Image} {
             opacity: 0.3;
         }
-        ${Rating} {
-            opacity: 0.3;
-        }
     }
 `;
-const Title = styled.span`
+const Name = styled.span`
     display: block;
     margin-bottom: 3px;
 `;
 
-const Year = styled.span`
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.5);
-`;
 
-const Poster = ({ id, imageUrl, title, rating, year, star, isMovie = false }) => (
-    <Link to={isMovie ? `/movie/${id}` : `/show/${id} `}>
+
+const Profile = ({ id, imageUrl, name }) => (
+    <Link to={`person/${id}`}>
         <Container>
             <ImageContainer>
                 <Image bgUrl={imageUrl ? `https://image.tmdb.org/t/p/w300${imageUrl}` : require("../assets/noPosterSmall.PNG").default} />
-
-                <Rating><span role="img" aria-label="rating">⭐️</span>{" "}{rating}</Rating>
-
             </ImageContainer >
-            <Title>{title.length > 15 ? `${title.substring(0, 15)}...` : title}</Title>
-            <Year>{year}</Year>
+            <Name>{name.length > 15 ? `${name.substring(0, 15)}...` : name}</Name>
         </Container >
     </Link >
 );
 
 
 
-Poster.propTypes = {
+Profile.propTypes = {
     id: PropTypes.number.isRequired,
     imageUrl: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    rating: PropTypes.number,
-    year: PropTypes.string,
-    isMovie: PropTypes.bool
+    name: PropTypes.string.isRequired,
 }
 
-export default Poster;
+export default Profile;

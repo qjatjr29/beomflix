@@ -9,8 +9,6 @@ const api = axios.create({
 
 })
 
-
-
 export const MovieApi = {
     nowPlaying: () => api.get("movie/now_playing"),
     upComing: () => api.get("movie/upcoming"),
@@ -52,4 +50,7 @@ export const tvApi = {
     credit: (id) => api.get(`tv/${id}/credits`),
     video: (id) => api.get(`tv/${id}/videos`)
 
+}
+export const peopleApi = {
+    popular: (page) => api.get("person/popular", { params: { page, limit: 50 } })
 }

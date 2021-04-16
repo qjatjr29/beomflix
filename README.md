@@ -8,6 +8,7 @@ Learning React and ES6 by building a Movie Discovery APP.
 - [x] TV Shows
 - [x] Search
 - [x] Detail
+- [ ] People
 
 ## API Verbs
 

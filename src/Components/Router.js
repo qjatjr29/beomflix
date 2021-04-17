@@ -6,6 +6,7 @@ import Search from "Routes/Search";
 import Header from "Components/Header";
 import Detail from "Routes/Detail";
 import People from "Routes/People";
+import peopleDetail from "Routes/peopleDetail";
 
 
 
@@ -21,6 +22,7 @@ export default () => (
                 <Route path="/people" component={People} />
                 <Route path="/movie/:id" component={Detail} />
                 <Route path="/show/:id" component={Detail} />
+                <Route path="/person/:id" component={peopleDetail} />
                 <Redirect from="*" to="/" />
             </Switch>
         </>

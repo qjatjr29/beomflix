@@ -52,5 +52,8 @@ export const tvApi = {
 
 }
 export const peopleApi = {
-    popular: (page) => api.get("person/popular", { params: { page, limit: 50 } })
+    popular: (page) => api.get("person/popular", { params: { page, limit: 50 } }),
+    detail: (id) => api.get(`person/${id}`),
+    MovieCredits: (id) => api.get(`person/${id}/movie_credits`),
+    TVCredits: (id) => api.get(`person/${id}/tv_credits`)
 }

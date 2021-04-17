@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Helmet from "react-helmet";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
+import { Link } from "react-router-dom";
 
 
 const Container = styled.div`
@@ -85,13 +86,7 @@ const Cast = styled.div`
 const Crew = styled.div`
     margin-top:30px;
 `;
-const ProfileContanier = styled.div`
-     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-`;
+
 
 const Profile = styled.div`
     height: 270px;
@@ -110,7 +105,20 @@ const ProfileImg = styled.div`
     height:140px;
     border-radius:10px;
     margin-bottom:10px;
-    `;
+    transition: opacity 0.1s linear;
+`;
+const ProfileContanier = styled.div`
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   &:hover{
+       ${ProfileImg} {
+           opacity: 0.3;
+       }
+   }
+`;
 const SectionTitle = styled.span`
     margin-top:20px;
     font-size:23px;
@@ -150,7 +158,6 @@ const VideoIframe = styled.iframe``;
 
 
 const CompanyContainer = styled.div`
-    
     width:370px;
     display:grid;
     position:fixed;
@@ -266,11 +273,13 @@ const DetailPresenter = ({ result, loading, error, cast, crew, videos, isMovie }
                                 <Profile >
                                     {cast.map((casting, index) =>
                                         index === casting.length - 1 ? null :
-                                            <ProfileContanier>
-                                                <ProfileImg peopleImage={casting.profile_path ? `https://image.tmdb.org/t/p/w200${casting.profile_path}` : require("../../assets/noPosterSmall.PNG").default} />
-                                                <PeopleName>{casting.name}</PeopleName>
-                                                <CharacterName>{casting.character}</CharacterName>
-                                            </ProfileContanier>
+                                            <Link to={`/person/${casting.id}`}>
+                                                <ProfileContanier>
+                                                    <ProfileImg peopleImage={casting.profile_path ? `https://image.tmdb.org/t/p/w200${casting.profile_path}` : require("../../assets/noPosterSmall.PNG").default} />
+                                                    <PeopleName>{casting.name}</PeopleName>
+                                                    <CharacterName>{casting.character}</CharacterName>
+                                                </ProfileContanier>
+                                            </Link>
                                     )}
                                 </Profile>
                             </Cast>

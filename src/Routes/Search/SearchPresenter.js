@@ -6,6 +6,7 @@ import Loader from "Components/Loader";
 import Section from "Components/Section";
 import Message from "Components/Message";
 import Poster from "Components/Poster";
+import Profile from "Components/Profile";
 
 const Container = styled.div`
     padding:0 20px;
@@ -25,7 +26,7 @@ const Input = styled.input`
 
 
 
-const SearchPresenter = ({ movieResults, tvResults, loading, error, searchTerm, handleSubmit, updateTerm }) =>
+const SearchPresenter = ({ movieResults, tvResults, peopleResults, loading, error, searchTerm, handleSubmit, updateTerm }) =>
     <Container>
         <Helmet><title>Search | Beomflix</title></Helmet>
         <Form onSubmit={handleSubmit}>
@@ -61,6 +62,18 @@ const SearchPresenter = ({ movieResults, tvResults, loading, error, searchTerm, 
                         // <span key={show.id}>{show.name}</span>
                     ))}
                 </Section>)}
+            {peopleResults && peopleResults.length > 0 && (
+                <Section title="People Results">
+                    {peopleResults.map(show => (
+                        <Profile
+                            key={show.id}
+                            id={show.id}
+                            name={show.name}
+                            imageUrl={show.profile_path}
+                        />
+                        // <span key={show.id}>{show.name}</span>
+                    ))}
+                </Section>)}
         </>}
         {error && <Message color="#e74c3c" text={error} />}
         {tvResults && movieResults && tvResults.length === 0 && movieResults.length === 0 && (
@@ -70,6 +83,7 @@ const SearchPresenter = ({ movieResults, tvResults, loading, error, searchTerm, 
 SearchPresenter.propTypes = {
     movieResults: PropTypes.array,
     tvResults: PropTypes.array,
+    peopleResults: PropTypes.array,
     loading: PropTypes.bool.isRequired,
     error: PropTypes.string,
     searchTerm: PropTypes.string,

@@ -1,5 +1,6 @@
 import { MovieApi } from "API";
 import { tvApi } from "API";
+import { peopleApi } from "API";
 import React from "react";
 import SearchPresenter from "./SearchPresenter";
 
@@ -7,6 +8,7 @@ export default class extends React.Component {
     state = {
         movieResults: null, // 검색한 영화 
         tvResults: null, // 검색한 tv 프로그램
+        peopleResults: null,
         searchTerm: "", // 사용자가 단어를 가지고 검색
         loading: false,
         error: null
@@ -39,10 +41,12 @@ export default class extends React.Component {
 
             const { data: { results: movieResults } } = await MovieApi.search(searchTerm);
             const { data: { results: tvResults } } = await tvApi.search(searchTerm);
+            const { data: { results: peopleResults } } = await peopleApi.search(searchTerm);
 
             this.setState({
                 movieResults,
-                tvResults
+                tvResults,
+                peopleResults
             })
         } catch {
             this.setState({ error: "Can't find results" });
@@ -53,10 +57,11 @@ export default class extends React.Component {
 
 
     render() {
-        const { movieResults, tvResults, searchTerm, loading, error } = this.state;
+        const { movieResults, tvResults, peopleResults, searchTerm, loading, error } = this.state;
         return <SearchPresenter
             movieResults={movieResults}
             tvResults={tvResults}
+            peopleResults={peopleResults}
             searchTerm={searchTerm}
             loading={loading}
             error={error}

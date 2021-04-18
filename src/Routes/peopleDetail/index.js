@@ -69,32 +69,7 @@ const SectionTitle = styled.span`
 const SectionHr = styled.hr`
     margin-top:15px;
 `;
-const ProfileContanier = styled.div`
-     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-`;
 
-const Profile = styled.div`
-    height: 270px;
-    display: grid;
-    gap: 10px;
-    align-items: center;
-    grid-auto-flow: column;
-    grid-auto-columns: 10%;
-    overflow-x: auto;
-`;
-const ProfileImg = styled.div`
-    width:120px;
-    background-image:url(${props => props.peopleImage});
-    background-position:center center;
-    background-size:cover;
-    height:140px;
-    border-radius:10px;
-    margin-bottom:10px;
-    `;
 const History = styled.div`
     margin: 20px 0;    
 `;
@@ -170,7 +145,7 @@ const Person = (props) => {
                             <Item>{detail.known_for_department}</Item>
                             <Divider>  ·  </Divider>
                             <Item>
-                                <a href={`https://www.imdb.com/title/${detail.imdb_id}`}>
+                                <a href={`https://www.imdb.com/name/${detail.imdb_id}`}>
                                     <img class="fit-picture"
                                         src="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"
                                         alt="Grapefruit slice atop a pile of other slices"

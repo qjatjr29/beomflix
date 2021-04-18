@@ -290,11 +290,13 @@ const DetailPresenter = ({ result, loading, error, cast, crew, videos, isMovie }
                                 <Profile >
                                     {crew.map((casting, index) =>
                                         index === casting.length - 1 ? null :
-                                            <ProfileContanier>
-                                                <ProfileImg peopleImage={casting.profile_path ? `https://image.tmdb.org/t/p/w200${casting.profile_path}` : require("../../assets/noPosterSmall.PNG").default} />
-                                                <PeopleName>{casting.name}</PeopleName>
-                                                <Job>{casting.job}</Job>
-                                            </ProfileContanier>
+                                            <Link to={`/person/${casting.id}`}>
+                                                <ProfileContanier>
+                                                    <ProfileImg peopleImage={casting.profile_path ? `https://image.tmdb.org/t/p/w200${casting.profile_path}` : require("../../assets/noPosterSmall.PNG").default} />
+                                                    <PeopleName>{casting.name}</PeopleName>
+                                                    <Job>{casting.job}</Job>
+                                                </ProfileContanier>
+                                            </Link>
                                     )}
                                 </Profile>
                             </Crew>
